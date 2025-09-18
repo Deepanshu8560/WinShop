@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Filter, ArrowUpDown, X } from 'lucide-react';
+import { Filter, ArrowUpDown, X, LayoutGrid, List } from 'lucide-react'; 
 import { FilterState, SortOption } from '../types/product';
 
 interface FilterBarProps {
@@ -9,6 +9,10 @@ interface FilterBarProps {
   onFiltersChange: (filters: Partial<FilterState>) => void;
   totalProducts: number;
   isLoading: boolean;
+
+  // 🔹 New props
+  viewMode: 'grid' | 'list';
+  setViewMode: (mode: 'grid' | 'list') => void;
 }
 
 const sortOptions: { value: SortOption; label: string }[] = [
@@ -23,7 +27,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   filters,
   onFiltersChange,
   totalProducts,
-  isLoading
+  isLoading,
+  viewMode,
+  setViewMode
 }) => {
   return (
     <motion.div
@@ -33,6 +39,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       className="bg-white rounded-2xl shadow-lg p-6 mb-8"
     >
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        {/* Product count */}
         <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <span className="font-medium text-gray-900">
@@ -40,7 +47,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        {/* Filters + Sort + View Toggle */}
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
+          {/* Category filter */}
           <div className="relative">
             <select
               value={filters.category}
@@ -65,6 +74,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             )}
           </div>
 
+          {/* Sort dropdown */}
           <div className="relative">
             <ArrowUpDown className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <select
@@ -78,6 +88,22 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 </option>
               ))}
             </select>
+          </div>
+
+          {/* 🔹 View Mode Toggle */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-xl ${viewMode === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600'}`}
+            >
+              <LayoutGrid className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 rounded-xl ${viewMode === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600'}`}
+            >
+              <List className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

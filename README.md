@@ -83,9 +83,14 @@ http://localhost:5173
 ```
 ### 📸 Screenshots
 
-<img src="public/ss1.png" alt="Screenshot" width="300"/>
-<img src="public/ss2.png" alt="Screenshot" width="300"/>
-<img src="public/ss3.png" alt="Screenshot" width="300"/>
+<table>
+  <tr>
+    <td><img src="public/ss1.png" alt="Screenshot 1" width="300"/></td>
+    <td><img src="public/ss2.png" alt="Screenshot 2" width="300"/></td>
+    <td><img src="public/ss3.png" alt="Screenshot 3" width="300"/></td>
+  </tr>
+</table>
+
 
 ### 🤝 Contributing
 

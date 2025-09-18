@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
               <ShoppingBag className="w-6 h-6 text-white" />
             </motion.div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">ProductHub</h1>
+              <h1 className="text-xl font-bold text-gray-900">Winshop</h1>
               <p className="text-xs text-gray-600">Discover amazing products</p>
             </div>
           </div>

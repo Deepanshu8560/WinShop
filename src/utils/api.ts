@@ -32,10 +32,9 @@ export const fetchCategories = async (): Promise<Category[]> => {
     throw new Error('Failed to fetch categories');
   }
 
-  const categories: string[] = await response.json();
+  const categories: Category[] = await response.json();
 
-  // ✅ Add "All Categories" at the beginning
-  return ['All Categories', ...categories];
+  return [{ slug: "", name: "All Categories", url: "" }, ...categories];
 };
 
 export const fetchProductsByCategory = async (

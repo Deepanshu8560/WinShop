@@ -30,7 +30,8 @@ function App() {
   
   const { categories, loading: categoriesLoading } = useCategories();
 
-
+  // 🔹 New state for grid/list toggle
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const currentPage = Math.floor(skip / limit) + 1;
   const totalPages = Math.ceil(total / limit);
@@ -81,12 +82,15 @@ function App() {
           </p>
         </motion.div>
 
+        {/* 🔹 Pass viewMode + setViewMode to FilterBar */}
         <FilterBar
           categories={categories}
           filters={filters}
           onFiltersChange={updateFilters}
           totalProducts={total}
           isLoading={loading || categoriesLoading}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
         />
 
         {loading ? (
@@ -96,7 +100,11 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            className={
+              viewMode === 'grid'
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                : "flex flex-col gap-4"
+            }
           >
             {products.map((product, index) => (
               <ProductCard
@@ -104,6 +112,7 @@ function App() {
                 product={product}
                 onClick={handleProductClick}
                 index={index}
+                viewMode={viewMode}
               />
             ))}
           </motion.div>

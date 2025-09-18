@@ -83,7 +83,7 @@ http://localhost:5173
 ```
 ### 📸 Screenshots
 
-<table>
+<table style="border-collapse: collapse; border: none;">
   <tr>
     <td><img src="public/ss1.png" alt="Screenshot 1" width="300"/></td>
     <td><img src="public/ss2.png" alt="Screenshot 2" width="300"/></td>
